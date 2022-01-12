@@ -1,0 +1,40 @@
+name: CI
+on:
+  push:
+    branches: ["main"]
+    tags: ["v*"]
+  pull_request:
+    branches: ["*"]
+
+env: 
+  JABBA_INDEX: 'https://github.com/typelevel/jdk-index/raw/main/index.json'
+
+jobs:
+  build:
+    name: CI
+    strategy:
+      fail-fast: false
+      matrix: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: coursier/cache-action@v6      
+      - uses: olafurpg/setup-scala@v13
+        with:
+          java-version: graalvm-ce-java17
+
+      - name: Setup
+        run: |
+          PLATFORM="$(uname)"
+
+          if [ $PLATFORM == "Darwin" ]; then
+            echo "It's a Mac"
+            brew install llvm
+          else
+            echo "It's a linux"
+            sudo apt-get update
+            sudo apt install clang llvm llvm-dev libclang-dev
+          fi
+
+      - name: Compile examples
+        run: sbt run
