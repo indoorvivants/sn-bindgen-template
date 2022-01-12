@@ -8,5 +8,3 @@ Bindgen.bindings := { builder =>
     cImports = List("header.h")
   )
 }
-
-
