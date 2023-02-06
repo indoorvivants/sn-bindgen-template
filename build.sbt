@@ -1,4 +1,4 @@
-scalaVersion := "3.2.1"
+scalaVersion := "3.2.2"
 enablePlugins(ScalaNativePlugin, BindgenPlugin)
 
 import bindgen.interface.Binding
