@@ -25,12 +25,12 @@ jobs:
 
           if [ $PLATFORM == "Darwin" ]; then
             echo "It's a Mac"
-            brew install llvm@14 sbt
+            brew install llvm@17 sbt
           else
             echo "It's a Linux"
             wget https://apt.llvm.org/llvm.sh
             chmod +x llvm.sh
-            sudo ./llvm.sh 14
+            sudo ./llvm.sh 17
           fi
 
       - name: Compile examples
