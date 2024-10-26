@@ -1,4 +1,4 @@
-addSbtPlugin("com.indoorvivants" % "bindgen-sbt-plugin" % "0.0.24")
+addSbtPlugin("com.indoorvivants" % "bindgen-sbt-plugin" % "0.1.4")
 
 addSbtPlugin("org.scala-native" % "sbt-scala-native" % "0.4.17")
 
