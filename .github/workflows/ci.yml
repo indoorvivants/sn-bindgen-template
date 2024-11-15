@@ -12,12 +12,20 @@ jobs:
     strategy:
       fail-fast: false
       matrix: 
-        os: [ubuntu-latest, macos-12, macos-14]
+        os: [ubuntu-22.04,  macos-14]
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - uses: coursier/cache-action@v6      
+      - name: Setup
+        uses: actions/setup-java@v4
+        with:
+          java-version: 21
+          distribution: zulu
+          cache: sbt
+
+      - uses: sbt/setup-sbt@v1
 
       - name: Setup
         run: |
@@ -25,12 +33,12 @@ jobs:
 
           if [ $PLATFORM == "Darwin" ]; then
             echo "It's a Mac"
-            brew install llvm@14 sbt
+            brew install llvm@17
           else
             echo "It's a Linux"
             wget https://apt.llvm.org/llvm.sh
             chmod +x llvm.sh
-            sudo ./llvm.sh 14
+            sudo ./llvm.sh 17
           fi
 
       - name: Compile examples
