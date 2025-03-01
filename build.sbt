@@ -1,4 +1,4 @@
-scalaVersion := "3.3.4"
+scalaVersion := "3.3.5"
 
 enablePlugins(ScalaNativePlugin, BindgenPlugin)
 
