@@ -7,3 +7,7 @@ typedef struct Hello {
 } Hello;
 
 unsigned resolve(Hello h, int i);
+
+#define MY_CONST_1 1
+#define MY_CONST_2 0xdeadbeef
+#define MY_CONST_3 0.025f

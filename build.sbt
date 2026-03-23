@@ -8,5 +8,5 @@ bindgenBindings := Seq(
   Binding(
     baseDirectory.value / "src" / "main" / "resources" / "scala-native" / "header.h",
     "lib_check"
-  ).withCImports(List("header.h"))
+  ).withCImports(List("header.h")).withMacros(Set("MY_CONST_*"))
 )
